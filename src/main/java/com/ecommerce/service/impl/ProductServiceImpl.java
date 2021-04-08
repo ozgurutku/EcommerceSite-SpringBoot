@@ -3,11 +3,12 @@ package com.ecommerce.service.impl;
 import com.ecommerce.model.Product;
 import com.ecommerce.repository.ProductRepository;
 import com.ecommerce.service.ProductService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.Optional;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 
     @Inject
@@ -19,15 +20,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProduct(long id) {
-        Optional<Product> optional = productRepository.findById(id);
-        Product product = null;
-        if (optional.isPresent()) {
-            product = optional.get();
-        } else {
-            throw new RuntimeException("Product not found id:" + id);
-        }
-        return product;
+    public List<Product> findProducts(String input) {
+        return productRepository.findByProductName(input);
+    }
+
+    @Override
+    public Product findProductById(String productId) {
+        long id = Long.parseLong(productId);
+        return productRepository.findProductById(id);
     }
 
     @Override
@@ -42,11 +42,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void updateProduct(long id, Product updateProduct) {
-        Product oldProduct = getProduct(id);
+        Product oldProduct = productRepository.findProductById(id);
         oldProduct.setName(updateProduct.getName());
         oldProduct.setDescription(updateProduct.getDescription());
         oldProduct.setCategory(updateProduct.getCategory());
         oldProduct.setPrice(updateProduct.getPrice());
         saveProduct(updateProduct);
     }
+
+    @Override
+    public List<Product> getCategory(String category) {
+        return productRepository.findProductByCategory(category);
+    }
+
 }

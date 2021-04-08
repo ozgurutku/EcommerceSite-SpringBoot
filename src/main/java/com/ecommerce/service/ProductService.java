@@ -8,12 +8,16 @@ public interface ProductService{
 
     List<Product> getAllProduct();
 
-    Product getProduct(long id);
+    List<Product> findProducts(String id);
+
+    Product findProductById(String id);
 
     void saveProduct(Product product);
 
     void deleteProduct(Product product);
 
     void updateProduct(long id, Product updateProduct);
+
+    List<Product> getCategory(String category);
 
 }

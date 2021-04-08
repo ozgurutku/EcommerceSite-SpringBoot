@@ -4,10 +4,12 @@ import com.ecommerce.model.Product;
 import com.ecommerce.model.User;
 import com.ecommerce.repository.UserRepository;
 import com.ecommerce.service.UserService;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     @Inject
