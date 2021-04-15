@@ -44,14 +44,6 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return name;
-    }
-
-    public void setUserName(String userName) {
-        this.name = userName;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -75,4 +67,21 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
 }
