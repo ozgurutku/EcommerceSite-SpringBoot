@@ -23,6 +23,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/logout").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/home").permitAll()
+                .antMatchers("/search").permitAll()
+                .antMatchers("/product/seko").permitAll()
+                .antMatchers("/product/Telefon").permitAll()
+                .antMatchers("/product/araba").permitAll()
                 //Author
                 .antMatchers("/product/").hasAnyAuthority("ADMIN", "USER")
                 .antMatchers("/product/new").hasAnyAuthority("ADMIN")

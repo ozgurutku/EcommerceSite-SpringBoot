@@ -3,9 +3,7 @@ package com.ecommerce.controller;
 import com.ecommerce.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
@@ -14,6 +12,11 @@ public class HomeController {
 
     @Inject
     ProductService productService;
+
+    @ModelAttribute
+    public void addAttribute(Model model){
+        model.addAttribute("categories", productService.getCategory());
+    }
 
     @GetMapping("/home")
     public String homePage(Model model) {
@@ -24,8 +27,8 @@ public class HomeController {
     //Todo: flashattribute,category ?
     @PostMapping("/search")
     public String search(@RequestParam("search") String search, Model model){
-        model.addAttribute("products", productService.findProducts(search));
-        return "resultProduct.html";
+        model.addAttribute("listProduct", productService.findProducts(search));
+        return "home.html";
     }
 
     @GetMapping("/productDetails")
@@ -34,9 +37,18 @@ public class HomeController {
         return "productDetails.html";
     }
 
+
+    @GetMapping("/product/{category}")
+    public String category(@PathVariable("category") String category, Model model){
+        model.addAttribute("listProduct", productService.getProductByCategory(category));
+        return "home.html";
+    }
+
+    /*
     @GetMapping("/category")
     public String category(@RequestParam("category") String category, Model model){
         model.addAttribute("category", productService.getCategory(category));
         return "productCategory.html";
     }
+     */
 }

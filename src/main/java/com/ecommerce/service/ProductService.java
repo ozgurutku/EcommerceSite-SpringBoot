@@ -18,6 +18,8 @@ public interface ProductService{
 
     void updateProduct(long id, Product updateProduct);
 
-    List<Product> getCategory(String category);
+    List<Product> getProductByCategory(String category);
+
+    List<String> getCategory();
 
 }

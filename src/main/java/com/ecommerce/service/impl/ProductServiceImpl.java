@@ -3,9 +3,11 @@ package com.ecommerce.service.impl;
 import com.ecommerce.model.Product;
 import com.ecommerce.repository.ProductRepository;
 import com.ecommerce.service.ProductService;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -51,8 +53,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getCategory(String category) {
+    public List<Product> getProductByCategory(String category) {
         return productRepository.findProductByCategory(category);
+    }
+
+    @Override
+    public List<String> getCategory() {
+        return productRepository.findDistinctByCategory();
     }
 
 }
