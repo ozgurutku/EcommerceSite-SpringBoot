@@ -1,10 +1,11 @@
 package com.ecommerce.service;
 
+import com.ecommerce.dto.UserDto;
 import com.ecommerce.model.User;
 
 public interface UserService {
 
-    void saveUser(User user);
+    void saveUser(UserDto userDto);
 
     void updateUser(long id, User updateUser);
 

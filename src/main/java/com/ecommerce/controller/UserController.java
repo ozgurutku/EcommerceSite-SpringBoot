@@ -1,17 +1,33 @@
 package com.ecommerce.controller;
 
+import com.ecommerce.dto.UserDto;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
-@Controller
+@Controller()
+@RequestMapping("/registration")
 public class UserController {
+    @Inject
+    private UserService userService;
 
+    @ModelAttribute("user")
+    public UserDto user() {
+        return new UserDto();
+    }
+
+    @GetMapping
+    public String getRegistrationPage() {
+        return "register.html";
+    }
+
+    @PostMapping
+    public String registerUserAccount(@ModelAttribute("user") UserDto userDto) {
+        userService.saveUser(userDto);
+        return "redirect:/registration?success";
+    }
 }

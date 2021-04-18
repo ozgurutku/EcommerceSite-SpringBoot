@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
-@Controller()
+@Controller("/ecommerce")
 public class HomeController {
 
     @Inject
@@ -31,24 +31,15 @@ public class HomeController {
         return "home.html";
     }
 
-    @GetMapping("/productDetails")
-    public String product(@RequestParam("id") String id, Model model){
+    @GetMapping("/productDetails/{id}")
+    public String product(@PathVariable("id") long id, Model model){
         model.addAttribute("productDetail", productService.findProductById(id));
         return "productDetails.html";
     }
-
 
     @GetMapping("/product/{category}")
     public String category(@PathVariable("category") String category, Model model){
         model.addAttribute("listProduct", productService.getProductByCategory(category));
         return "home.html";
     }
-
-    /*
-    @GetMapping("/category")
-    public String category(@RequestParam("category") String category, Model model){
-        model.addAttribute("category", productService.getCategory(category));
-        return "productCategory.html";
-    }
-     */
 }

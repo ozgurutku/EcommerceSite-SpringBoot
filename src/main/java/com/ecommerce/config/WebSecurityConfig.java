@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
@@ -15,18 +16,19 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(securedEnabled = true, proxyTargetClass = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/ecommerce/**").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/logout").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/home").permitAll()
-                .antMatchers("/search").permitAll()
-                .antMatchers("/product/seko").permitAll()
-                .antMatchers("/product/Telefon").permitAll()
-                .antMatchers("/product/araba").permitAll()
+                .antMatchers("/registration").permitAll()
                 //Author
                 .antMatchers("/product/").hasAnyAuthority("ADMIN", "USER")
                 .antMatchers("/product/new").hasAnyAuthority("ADMIN")

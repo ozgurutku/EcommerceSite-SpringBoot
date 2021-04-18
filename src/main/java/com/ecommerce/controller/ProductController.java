@@ -10,25 +10,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.inject.Inject;
 
-@Controller("/product/")
+@Controller()
 public class ProductController {
 
     @Inject
     private ProductService productService;
 
-    @GetMapping("add")
+    @GetMapping("/product/add")
     public String addProduct(Model model, @ModelAttribute("product") Product product){
         productService.saveProduct(product);
         return "redirect:/";
     }
 
-    @GetMapping("delete")
+    @GetMapping("/product/delete")
     public String deleteProduct(Model model, @ModelAttribute("product") Product product){
         productService.deleteProduct(product);
         return "redirect:/";
     }
 
-    @GetMapping("update")
+    @GetMapping("/product/update")
     public String updateProduct(Model model, @ModelAttribute("product") Product updateProduct, @RequestParam("id") long id) {
         productService.updateProduct(id,updateProduct);
         return "redirect:/";

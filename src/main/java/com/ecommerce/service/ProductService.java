@@ -10,7 +10,7 @@ public interface ProductService{
 
     List<Product> findProducts(String id);
 
-    Product findProductById(String id);
+    Product findProductById(long id);
 
     void saveProduct(Product product);
 

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/header :: library">
+<body>
+<div class="container">
+    <h1>Giriş Sayfası</h1>
+    <hr>
+    <form th:action="@{/login}" method="post">
+
+
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">Email veya şifre yanlış.</div>
+        </div>
+
+
+        <div th:if="${param.logout}">
+            <div class="alert alert-info">Çıkış yapılıyor</div>
+        </div>
+        <input type="text" class="form-control mb-4 col-4" id="username" name="username" placeholder="Email" required />
+        <input type="password" id="password" name="password" class="form-control mb-4 col-4" placeholder="Şifre" required />
+        <input type="submit" name="login-submit" id="login-submit" class="btn btn-info col-2" value="Giriş" />
+
+    </form>
+
+</div>
+</body>
+</html>

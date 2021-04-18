@@ -3,11 +3,9 @@ package com.ecommerce.service.impl;
 import com.ecommerce.model.Product;
 import com.ecommerce.repository.ProductRepository;
 import com.ecommerce.service.ProductService;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,8 +25,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findProductById(String productId) {
-        long id = Long.parseLong(productId);
+    public Product findProductById(long id) {
         return productRepository.findProductById(id);
     }
 

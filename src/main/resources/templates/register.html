@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/header :: library">
+<body>
+<div class="container">
+    <div th:if="${param.success}">
+        <div class="alert alert-info">Başarıyla kayıt olundu</div>
+    </div>
+    <div th:if="${param.error}">
+        <div class="alert alert-danger">Zaten böyle bir email var</div>
+    </div>
+    <h1>Kayıt</h1>
+    <hr>
+    <form action="#" th:action="@{/registration}" th:object="${user}" method="POST">
+        <input type="text" th:field="*{name}" placeholder="Ad" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{surname}" placeholder="Soyad" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4" required />
+        <input type="password" th:field="*{password}" placeholder="Şifre" class="form-control mb-4 col-4" required />
+        <button type="submit" class="btn btn-info col-2">Kayıt ol</button>
+    </form>
+</div>
+</body>
+</html>

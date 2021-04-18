@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/header :: library">
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="card-group" style="margin-left: 250px;margin-right: 250px;">
+    <div class="col-md-4">
+        <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${productDetail.name}"></h5>
+                <p class="card-text" th:text="${productDetail.description}"></p>
+                <p class="card-text" th:text="'Kategori: '+${productDetail.category}"></p>
+            </div>
+            <a th:href="@{/cart/add}" class="btn btn-primary" style="margin:25px;">Sepete ekle</a>
+            <a href="#" class="btn btn-primary" style="margin:25px;" th:text="${productDetail.price}"></a>
+
+        </div>
+    </div>
+</div>
+</body>
+</head>
+</html>

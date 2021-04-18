@@ -1,12 +1,16 @@
 package com.ecommerce.service.impl;
 
+import com.ecommerce.dto.UserDto;
 import com.ecommerce.model.Product;
+import com.ecommerce.model.Role;
 import com.ecommerce.model.User;
 import com.ecommerce.repository.UserRepository;
 import com.ecommerce.service.UserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 import java.util.Optional;
 
 @Service
@@ -15,8 +19,17 @@ public class UserServiceImpl implements UserService {
     @Inject
     private UserRepository userRepository;
 
+    @Inject
+    private BCryptPasswordEncoder passwordEncoder;
+
     @Override
-    public void saveUser(User user) {
+    public void saveUser(UserDto userDto) {
+        User user = new User();
+        user.setName(userDto.getName());
+        user.setSurname(userDto.getSurname());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setRoles(Arrays.asList(new Role("USER")));
         userRepository.save(user);
     }
 
@@ -26,7 +39,7 @@ public class UserServiceImpl implements UserService {
         oldUser.setName(updateUser.getName());
         oldUser.setPassword(updateUser.getPassword());
         oldUser.setEmail(updateUser.getEmail());
-        saveUser(updateUser);
+        //saveUser(updateUser);
     }
 
     @Override
