@@ -9,11 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.inject.Inject;
 
-@Controller()
+@Controller
+@RequestMapping("/cart")
 public class CartController {
 
     @Inject
@@ -30,21 +32,21 @@ public class CartController {
         model.addAttribute("categories", productService.getCategory());
     }
 
-    @GetMapping("/cart/all")
+    @GetMapping("/all")
     public String getMyProduct(Model model) {
         model.addAttribute("listMyProduct",cartService.getMyProducts(authenticationFacade.getAuthentication()));
         return "myProduct.html";
     }
 
-    @GetMapping("/cart/add")
+    @GetMapping("/add")
     public String addProductToMyCart(Model model, @RequestParam("id") long id) {
         cartService.addProductMyCart(authenticationFacade.getAuthentication(),id);
         return "redirect:/cart/all";
     }
 
-    @GetMapping("/cart/delete")
+    @GetMapping("/delete")
     public String deleteProductToMyCart(Model model, @RequestParam("id") long id) {
         cartService.deleteProductMyCart(authenticationFacade.getAuthentication(),id);
-        return "redirect:/all";
+        return "redirect:/cart/all";
     }
 }

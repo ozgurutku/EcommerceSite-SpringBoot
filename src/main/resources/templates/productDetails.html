@@ -12,7 +12,7 @@
                 <p class="card-text" th:text="${productDetail.description}"></p>
                 <p class="card-text" th:text="'Kategori: '+${productDetail.category}"></p>
             </div>
-            <a th:href="@{/cart/add}" class="btn btn-primary" style="margin:25px;">Sepete ekle</a>
+            <a th:href="@{/cart/add(id=${productDetail.id})}" class="btn btn-primary" style="margin:25px;">Sepete ekle</a>
             <a href="#" class="btn btn-primary" style="margin:25px;" th:text="${productDetail.price}"></a>
 
         </div>

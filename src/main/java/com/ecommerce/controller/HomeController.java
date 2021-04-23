@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
-@Controller("/ecommerce")
+@Controller
+@RequestMapping("/ecommerce")
 public class HomeController {
 
     @Inject

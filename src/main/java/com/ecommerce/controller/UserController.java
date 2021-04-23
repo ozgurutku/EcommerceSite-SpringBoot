@@ -27,7 +27,11 @@ public class UserController {
 
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") UserDto userDto) {
-        userService.saveUser(userDto);
+        try {
+            userService.saveUser(userDto);
+        }catch (Exception constraintViolationException){
+            return "redirect:/registration?error";
+        }
         return "redirect:/registration?success";
     }
 }

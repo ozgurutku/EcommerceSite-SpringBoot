@@ -3,7 +3,7 @@
 <head th:replace="fragments/header :: library">
 <body>
 <div th:replace="fragments/header :: header"></div>
-<a href="" class="btn btn-primary" style="margin:25px;">Sepetim</a>
+<a href="" class="btn btn-primary" style="margin: 40px 200px;width: 1500px;">Sepetim</a>
 <div class="card-group" style="margin-left: 250px;margin-right: 250px;">
     <div class="col-md-4" th:each="product : ${listMyProduct}">
         <div class="card">
@@ -13,7 +13,7 @@
                 <p class="card-text" th:text="${product.description}"></p>
                 <p class="card-text" th:text="'Kategori: '+${product.category}"></p>
             </div>
-            <a th:href="@{/cart/delete}" class="btn btn-primary" style="margin:25px;">Sepetten sil</a>
+            <a th:href="@{/cart/delete(id=${product.id})}" class="btn btn-primary" style="margin:25px;">Sepetten sil</a>
             <a href="#" class="btn btn-primary" style="margin:25px;" th:text="${product.price}"></a>
         </div>
     </div>
