@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org/thymeleaf-extras-springsecurity ">
 <head th:fragment="library">
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -34,12 +37,16 @@
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasAuthority('USER')">
                     <a th:href="@{/cart/all}"><img class="nav-link" th:src="@{/basket.png}" tabindex="-1" aria-disabled="true" style="width:150px; height: 50px;"/></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasAuthority('USER')">
                     <a th:href="@{/logout}"><img class="nav-link" th:src="@{/logout.png}" tabindex="-1" aria-disabled="true" style="width:150px; height: 50px;"/></a>
                 </li>
+                <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+                    <a class="nav-link" th:href="@{/logout}"></a>
+                </li>
+
             </ul>
             <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/ecommerce/search}">
                 <input class="form-control mr-sm-2" type="search" th:name="search" placeholder="Search" aria-label="Search">

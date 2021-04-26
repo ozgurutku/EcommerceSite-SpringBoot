@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/header :: library">
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <div th:if="${param.success}">
+        <div class="alert alert-info">Ürün başarıyla eklendi</div>
+    </div>
+    <div th:if="${param.error}">
+        <div class="alert alert-danger">Ürün eklenemedi !</div>
+    </div>
+    <h1>Ürün ekleme</h1>
+    <hr>
+    <form action="#" th:action="@{/product/add}" th:object="${product}" method="POST" enctype="multipart/form-data">
+        <input type="text" th:field="*{name}" placeholder="Ürün Adı" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{description}" placeholder="Ürün Açıklaması" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{category}" placeholder="Ürün kategorisi" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{price}" placeholder="Ürün fiyatı" class="form-control mb-4 col-4" required />
+        <input type="file" th:name="file" placeholder="Ürün Resmi" class="form-control mb-4 col-4" accept="image/png, image/jpeg" required />
+        <button type="submit" class="btn btn-info col-2">Ürünü ekle</button>
+    </form>
+</div>
+</body>
+</html>

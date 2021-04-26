@@ -7,7 +7,7 @@
 <div class="card-group" style="margin-left: 250px;margin-right: 250px;">
     <div class="col-md-4" th:each="product : ${listMyProduct}">
         <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <img class="card-img-top" th:src="'/images/'+${product.image.fileName}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title" th:text="${product.name}"></h5>
                 <p class="card-text" th:text="${product.description}"></p>

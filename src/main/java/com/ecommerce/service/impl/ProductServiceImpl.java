@@ -4,8 +4,12 @@ import com.ecommerce.model.Product;
 import com.ecommerce.repository.ProductRepository;
 import com.ecommerce.service.ProductService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.inject.Inject;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -57,6 +61,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<String> getCategory() {
         return productRepository.findDistinctByCategory();
+    }
+
+    public void saveImage(MultipartFile file) throws IOException {
+        String myExternalFilePath = System.getProperty("user.dir") + "/images/" + file.getOriginalFilename();
+        File convFile = new File(myExternalFilePath);//burası
+        //File convFile = new File(fileName);
+        convFile.createNewFile();
+        FileOutputStream fos = new FileOutputStream(convFile);
+        fos.write(file.getBytes());
+        fos.close();
     }
 
 }

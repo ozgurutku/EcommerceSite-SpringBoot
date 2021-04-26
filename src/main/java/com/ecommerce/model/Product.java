@@ -18,6 +18,9 @@ public class Product {
 
     private double price;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Image image;
+
     public String getName() {
         return name;
     }
@@ -56,5 +59,13 @@ public class Product {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }
