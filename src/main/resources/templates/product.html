@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <body>
 <div th:fragment="product">
-<div class="card-group" style="margin-left: 250px;margin-right: 250px;">
+<div class="card-group" style="margin-left: 200px;margin-right: 200px;margin-top:45px;">
     <div class="col-md-4" th:each="product : ${listProduct}">
     <div class="card">
         <img class="card-img-top" th:src="'/images/'+${product.image.fileName}" alt="Card image cap">
