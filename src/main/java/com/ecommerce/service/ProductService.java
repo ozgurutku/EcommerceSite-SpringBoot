@@ -1,5 +1,6 @@
 package com.ecommerce.service;
 
+import com.ecommerce.model.Image;
 import com.ecommerce.model.Product;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,9 +17,7 @@ public interface ProductService{
 
     void saveProduct(Product product);
 
-    void deleteProduct(Product product);
-
-    void updateProduct(long id, Product updateProduct);
+    void updateProduct(long id, Product updateProduct, Image image);
 
     List<Product> getProductByCategory(String category);
 

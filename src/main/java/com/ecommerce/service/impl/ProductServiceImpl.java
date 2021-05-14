@@ -1,7 +1,10 @@
 package com.ecommerce.service.impl;
 
+import com.ecommerce.model.Image;
 import com.ecommerce.model.Product;
+import com.ecommerce.model.UserProduct;
 import com.ecommerce.repository.ProductRepository;
+import com.ecommerce.repository.UserProductRepository;
 import com.ecommerce.service.ProductService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +20,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Inject
     private ProductRepository productRepository;
+
+    @Inject
+    private UserProductRepository userProductRepository;
 
     @Override
     public List<Product> getAllProduct() {
@@ -38,19 +44,23 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
     }
 
+    //Todo : düzenlenmeli
     @Override
-    public void deleteProduct(Product product) {
-        productRepository.delete(product);
-    }
-
-    @Override
-    public void updateProduct(long id, Product updateProduct) {
+    public void updateProduct(long id, Product updateProduct, Image image) {
         Product oldProduct = productRepository.findProductById(id);
+        UserProduct userProduct = userProductRepository.findProductById(id);
+        userProduct.setName(updateProduct.getName());
+        userProduct.setDescription(updateProduct.getDescription());
+        userProduct.setCategory(updateProduct.getCategory());
+        userProduct.setPrice(updateProduct.getPrice());
+        userProduct.setImage(image);
         oldProduct.setName(updateProduct.getName());
         oldProduct.setDescription(updateProduct.getDescription());
         oldProduct.setCategory(updateProduct.getCategory());
         oldProduct.setPrice(updateProduct.getPrice());
-        saveProduct(updateProduct);
+        oldProduct.setImage(image);
+        userProductRepository.save(userProduct);
+        saveProduct(oldProduct);
     }
 
     @Override

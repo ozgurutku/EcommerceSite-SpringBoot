@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/header :: library">
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/sidebar :: sidebar"></div>
+  <div th:if="${param.success}">
+    <div class="alert alert-info">Ürün başarıyla eklendi</div>
+  </div>
+  <div th:if="${param.error}">
+    <div class="alert alert-danger">Ürün eklenemedi !</div>
+  </div>
+  <h1 style="margin-left: 200px;margin-right: 200px;margin-top:45px;">Ürün Silme</h1>
+  <hr style="margin-left: 200px;margin-right: 200px;">
+  <div class="card-group" style="margin-left: 200px;margin-right: 200px;margin-top:45px;">
+    <div class="col-md-4" th:each="product : ${listProduct}">
+      <div class="card">
+        <img class="card-img-top" th:src="'/images/'+${product.image.fileName}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${product.name}"></h5>
+        </div>
+        <a href="#" class="btn btn-primary" style="margin:25px;" th:text="${product.price}"></a>
+        <a th:href="@{'/product/update/'+${product.id}}" class="btn btn-danger" style="margin:25px;">Güncelle</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

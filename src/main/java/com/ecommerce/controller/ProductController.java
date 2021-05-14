@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.inject.Inject;
 import java.io.IOException;
 
-@Controller()
+@Controller
 @RequestMapping("/product")
 public class ProductController {
 
@@ -34,15 +34,26 @@ public class ProductController {
         return "redirect:/ecommerce/home";
     }
 
-    @GetMapping("/delete")
-    public String deleteProduct(Model model, @ModelAttribute("product") Product product){
-        productService.deleteProduct(product);
-        return "redirect:/";
+    @GetMapping("/update")
+    public String getListUpdateProduct(Model model){
+        model.addAttribute("listProduct", productService.getAllProduct());
+        return "listProductUpdate.html";
     }
 
-    @GetMapping("/update")
-    public String updateProduct(Model model, @ModelAttribute("product") Product updateProduct, @RequestParam("id") long id) {
-        productService.updateProduct(id,updateProduct);
-        return "redirect:/";
+    @GetMapping("/update/{id}")
+    public String getUpdateProductPage(Model model, @PathVariable("id") long id){
+        model.addAttribute("productDetail", productService.findProductById(id));
+        model.addAttribute("product",new Product());
+        return "productUpdate.html";
+    }
+
+    //Todo : düzenlenmeli
+    @PostMapping("/update/{id}")
+    public String deleteProduct(Model model, @PathVariable("id") long id, @ModelAttribute("product") Product product, @RequestParam("file") MultipartFile multipartFile) throws IOException {
+        Image image = new Image();
+        image.setFileName(multipartFile.getOriginalFilename());
+        productService.saveImage(multipartFile);
+        productService.updateProduct(id,product,image);
+        return "redirect:/product/update";
     }
 }
