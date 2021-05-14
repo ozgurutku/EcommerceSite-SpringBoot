@@ -3,7 +3,7 @@ package com.ecommerce.model;
 import javax.persistence.*;
 
 @Entity
-public class Product {
+public class UserProduct{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +22,18 @@ public class Product {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Image image;
+
+    public UserProduct(Long id, String name, String description, String category, int piece, double price, Image image) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.piece = piece;
+        this.price = price;
+        this.image = image;
+    }
+
+    public UserProduct() { }
 
     public String getName() {
         return name;

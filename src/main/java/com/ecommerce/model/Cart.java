@@ -13,17 +13,17 @@ public class Cart {
     private Long id;
 
     @OneToMany
-    private List<Product> product = new ArrayList<>();
+    private List<UserProduct> userProducts = new ArrayList<>();
 
     @OneToOne
     private User user;
 
-    public List<Product> getProduct() {
-        return product;
+    public List<UserProduct> getUserProducts() {
+        return userProducts;
     }
 
-    public void setProduct(List<Product> product) {
-        this.product = product;
+    public void setProduct(List<UserProduct> userProducts) {
+        this.userProducts = userProducts;
     }
 
     public User getUser() {

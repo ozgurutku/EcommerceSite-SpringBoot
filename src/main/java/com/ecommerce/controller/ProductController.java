@@ -26,7 +26,9 @@ public class ProductController {
 
     @PostMapping("/add")
     public String addProduct(Model model, @ModelAttribute("product") Product product, @RequestParam("file") MultipartFile multipartFile) throws IOException {
-        product.setImage(new Image());
+        Image image = new Image();
+        image.setFileName(multipartFile.getOriginalFilename());
+        product.setImage(image);
         productService.saveImage(multipartFile);
         productService.saveProduct(product);
         return "redirect:/ecommerce/home";

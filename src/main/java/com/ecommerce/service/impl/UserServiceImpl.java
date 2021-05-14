@@ -1,10 +1,7 @@
 package com.ecommerce.service.impl;
 
 import com.ecommerce.dto.UserDto;
-import com.ecommerce.model.Cart;
-import com.ecommerce.model.Product;
-import com.ecommerce.model.Role;
-import com.ecommerce.model.User;
+import com.ecommerce.model.*;
 import com.ecommerce.repository.CartRepository;
 import com.ecommerce.repository.UserRepository;
 import com.ecommerce.service.UserService;
@@ -38,11 +35,11 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setRoles(Arrays.asList(new Role("USER")));
-        Cart cart = new Cart();
-        List<Product> product = new ArrayList<>();
-        cart.setProduct(product);
-        cart.setUser(user);
         userRepository.save(user);
+        Cart cart = new Cart();
+        List<UserProduct> userProducts = new ArrayList<>();
+        cart.setProduct(userProducts);
+        cart.setUser(user);
         cartRepository.save(cart);
     }
 
