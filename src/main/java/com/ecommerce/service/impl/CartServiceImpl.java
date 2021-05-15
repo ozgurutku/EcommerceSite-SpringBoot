@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -35,6 +36,7 @@ public class CartServiceImpl implements CartService {
 
     public List getMyProducts(String email){
         Cart cart = getMyCart(userRepository.findByEmail(email));
+        cart.getUserProducts().stream().filter(userProduct -> userProduct.getPiece() > 0).collect(Collectors.toList());
         return cart.getUserProducts();
     }
 
@@ -62,8 +64,11 @@ public class CartServiceImpl implements CartService {
 
     public void deleteProductMyCart(String email, long id){
         Cart cart = getMyCart(userRepository.findByEmail(email));
-        Product product = productRepository.findProductById(id);
-        cart.getUserProducts().remove(product);
+        UserProduct product = userProductRepository.findProductById(id);
+        if(product.getPiece() == 1) {
+            cart.getUserProducts().remove(product);
+        }
+        cartRepository.updatePiece(id);
         cartRepository.save(cart);
     }
 }
