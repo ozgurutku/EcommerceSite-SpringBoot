@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/ecommerce/**").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/login.png").permitAll()
                 .antMatchers("/logout").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/images/{name}").permitAll()
@@ -39,9 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/product/update").hasAnyAuthority("ADMIN")
                 .antMatchers("/product/update/{id}").hasAnyAuthority("ADMIN")
                 .antMatchers("/product/add").hasAuthority("ADMIN")
-                .antMatchers("/account/").hasAnyAuthority("ADMIN", "MODERATOR")
-                .antMatchers("/account/update/{id}").hasAuthority("ADMIN")
-                .antMatchers("/account/delete/{id}").hasAuthority("ADMIN")
+                .antMatchers("/adminPanel").hasAnyAuthority("ADMIN")
                 //Own Account Updates
                 .antMatchers("/account/update").hasAnyAuthority("ADMIN", "MODERATOR", "USER")
                 //Book

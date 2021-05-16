@@ -4,6 +4,8 @@
 <body>
 <div th:replace="fragments/header :: header"></div>
 <div th:replace="fragments/sidebar :: sidebar"></div>
+<h1 style="margin-left: 200px;margin-right: 200px;margin-top:45px;">Ürün Güncelleme</h1>
+<hr style="margin-left: 200px;margin-right: 200px;">
 <div class="container">
     <div th:if="${param.success}">
         <div class="alert alert-info">Ürün başarıyla eklendi</div>
@@ -11,14 +13,13 @@
     <div th:if="${param.error}">
         <div class="alert alert-danger">Ürün eklenemedi !</div>
     </div>
-    <h1>Ürün ekleme</h1>
-    <hr>
-    <form action="#" th:action="@{'/product/update/'+${productDetail.id}}" th:object="${product}" method="POST" enctype="multipart/form-data">
-        <input type="text" th:field="*{name}" th:value="${productDetail.name}" placeholder="Ürün Adı" class="form-control mb-4 col-4" required />
-        <input type="text" th:field="*{description}" th:value="${productDetail.description}" placeholder="Ürün Açıklaması" class="form-control mb-4 col-4" required />
-        <input type="text" th:field="*{category}" th:value="${productDetail.category}" placeholder="Ürün kategorisi" class="form-control mb-4 col-4" required />
-        <input type="text" th:field="*{price}" th:value="${productDetail.price}" placeholder="Ürün fiyatı" class="form-control mb-4 col-4" required />
-        <input type="file" th:name="file" th:value="${productDetail.image.fileName}" placeholder="Ürün Resmi" class="form-control mb-4 col-4" accept="image/png, image/jpeg" required />
+    <form action="#" th:action="@{'/product/update/'+${productDetail.id}}" th:object="${productDetail}" method="POST" enctype="multipart/form-data">
+        <input type="text" th:field="*{name}" placeholder="Ürün Adı" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{description}" placeholder="Ürün Açıklaması" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{category}" placeholder="Ürün Kategorisi" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{price}" placeholder="Ürün Fiyatı" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{piece}" placeholder="Ürün Adedi" class="form-control mb-4 col-4" required />
+        <input type="file" th:name="file" placeholder="Ürün Resmi" class="form-control mb-4 col-4" accept="image/png, image/jpeg" required />
         <button type="submit" class="btn btn-info col-2">Ürünü Güncelle</button>
     </form>
 </div>

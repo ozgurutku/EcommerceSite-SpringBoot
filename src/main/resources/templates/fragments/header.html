@@ -20,29 +20,15 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
                 <li class="nav-item" sec:authorize="hasAuthority('USER')">
                     <a th:href="@{/cart/all}"><img class="nav-link" th:src="@{/basket.png}" tabindex="-1" aria-disabled="true" style="width:150px; height: 50px;"/></a>
                 </li>
-                <li class="nav-item" sec:authorize="hasAuthority('USER')">
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/login}"><img class="nav-link" th:src="@{/login.png}" tabindex="-1" aria-disabled="true" style="width:150px; height: 50px;"/></a>
+                </li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
                     <a th:href="@{/logout}"><img class="nav-link" th:src="@{/logout.png}" tabindex="-1" aria-disabled="true" style="width:150px; height: 50px;"/></a>
                 </li>
-                <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
-                    <a th:href="@{/logout}"><img class="nav-link" th:src="@{/logout.png}" tabindex="-1" aria-disabled="true" style="width:150px; height: 50px;"/></a>
-                </li>
-
             </ul>
             <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/ecommerce/search}">
                 <input class="form-control mr-sm-2" type="search" th:name="search" placeholder="Search" aria-label="Search">

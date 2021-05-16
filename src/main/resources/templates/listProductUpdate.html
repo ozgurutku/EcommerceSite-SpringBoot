@@ -13,7 +13,7 @@
   <h1 style="margin-left: 200px;margin-right: 200px;margin-top:45px;">Ürün Güncelleme</h1>
   <hr style="margin-left: 200px;margin-right: 200px;">
 <div class="card-group" style="margin-left: 200px;margin-right: 200px;margin-top:45px;">
-  <div class="col-md-4" th:each="product : ${listMyProduct}" style="margin-bottom: 75px">
+  <div class="col-md-4" th:each="product : ${listProduct}" style="margin-bottom: 75px">
     <div class="card">
       <img class="card-img-top" th:src="'/images/'+${product.image.fileName}" style="object-fit: fill; width: auto;height: 250px;" alt="Card image cap">
       <div class="card-body">

@@ -4,6 +4,8 @@
 <body>
 <div th:replace="fragments/header :: header"></div>
 <div th:replace="fragments/sidebar :: sidebar"></div>
+<h1 style="margin-left: 200px;margin-right: 200px;margin-top:45px;">Ürün Ekleme</h1>
+<hr style="margin-left: 200px;margin-right: 200px;">
 <div class="container">
     <div th:if="${param.success}">
         <div class="alert alert-info">Ürün başarıyla eklendi</div>
@@ -11,13 +13,12 @@
     <div th:if="${param.error}">
         <div class="alert alert-danger">Ürün eklenemedi !</div>
     </div>
-    <h1>Ürün ekleme</h1>
-    <hr>
     <form action="#" th:action="@{/product/add}" th:object="${product}" method="POST" enctype="multipart/form-data">
         <input type="text" th:field="*{name}" placeholder="Ürün Adı" class="form-control mb-4 col-4" required />
         <input type="text" th:field="*{description}" placeholder="Ürün Açıklaması" class="form-control mb-4 col-4" required />
         <input type="text" th:field="*{category}" placeholder="Ürün kategorisi" class="form-control mb-4 col-4" required />
         <input type="text" th:field="*{price}" placeholder="Ürün fiyatı" class="form-control mb-4 col-4" required />
+        <input type="text" th:field="*{piece}" placeholder="Ürün adedi" class="form-control mb-4 col-4" required />
         <input type="file" th:name="file" placeholder="Ürün Resmi" class="form-control mb-4 col-4" accept="image/png, image/jpeg" required />
         <button type="submit" class="btn btn-info col-2">Ürünü ekle</button>
     </form>

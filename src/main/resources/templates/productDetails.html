@@ -4,6 +4,8 @@
 <body>
 <div th:replace="fragments/header :: header"></div>
 <div th:replace="fragments/sidebar :: sidebar"></div>
+<h1 style="margin-left: 200px;margin-right: 200px;margin-top:45px;">Ürün Detayı</h1>
+<hr style="margin-left: 200px;margin-right: 200px;">
 <div class="card-group" style="margin-left: 200px;margin-right: 200px;margin-top:45px;">
     <div class="col-md-4" style="margin-bottom: 75px">
         <div class="card">
@@ -17,8 +19,8 @@
                 <li class="list-group-item" th:text="'Kategori : '+${productDetail.category}"></li>
                 <li class="list-group-item" th:text="'Adet : '+${productDetail.piece}"></li>
             </ul>
-            <div class="card-body">
-                <a th:href="@{/cart/add(id=${productDetail.id})}" class="btn btn-primary" style="margin:25px;">Sepete ekle</a>
+            <div class="card-body"> <!---->
+                <a th:classappend="${#authorization.expression('hasAnyAuthority(''USER'')')} ? '' : 'disabled'" th:href="@{/cart/add(id=${productDetail.id})}" class="btn btn-primary" style="margin:25px;">Sepete ekle</a>
             </div>
         </div>
     </div>

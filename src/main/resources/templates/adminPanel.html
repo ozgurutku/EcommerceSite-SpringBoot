@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/header :: library">
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/sidebar :: sidebar"></div>
+<h1 style="margin-left: 200px;margin-right: 200px;margin-top:45px;">Admin Paneli</h1>
+<hr style="margin-left: 200px;margin-right: 200px;">
+<div class="row justify-content-center" style="">
+<div class="col-2">
+    <a th:href="@{/product/add}"><img class="nav-link" th:src="@{/productAdd.png}" aria-disabled="true" style="width:150px; height: 100px;"/>Ürün ekle</a>
+</div>
+<div class="col-2">
+    <a th:href="@{/product/update}"><img class="nav-link" th:src="@{/productUpdate.png}" aria-disabled="true" style="width:150px; height: 100px;"/>Ürünü güncelle</a>
+</div>
+<div class="col-2">
+    <a th:href="@{/ecommerce/home}"><img class="nav-link" th:src="@{/productList.png}" aria-disabled="true" style="width:150px; height: 100px;"/>Ürünleri listele</a>
+</div>
+</div>
+</body>
+</head>
+</html>

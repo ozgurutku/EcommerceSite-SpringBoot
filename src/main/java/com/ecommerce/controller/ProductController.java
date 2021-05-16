@@ -18,6 +18,11 @@ public class ProductController {
     @Inject
     private ProductService productService;
 
+    @ModelAttribute
+    public void addAttribute(Model model){
+        model.addAttribute("categories", productService.getCategory());
+    }
+
     @GetMapping("/add")
     public String getAddProductPage(Model model){
         model.addAttribute("product",new Product());
@@ -43,13 +48,12 @@ public class ProductController {
     @GetMapping("/update/{id}")
     public String getUpdateProductPage(Model model, @PathVariable("id") long id){
         model.addAttribute("productDetail", productService.findProductById(id));
-        model.addAttribute("product",new Product());
         return "productUpdate.html";
     }
 
     //Todo : düzenlenmeli
     @PostMapping("/update/{id}")
-    public String deleteProduct(Model model, @PathVariable("id") long id, @ModelAttribute("product") Product product, @RequestParam("file") MultipartFile multipartFile) throws IOException {
+    public String deleteProduct(Model model, @PathVariable("id") long id, @ModelAttribute("productDetail") Product product, @RequestParam("file") MultipartFile multipartFile) throws IOException {
         Image image = new Image();
         image.setFileName(multipartFile.getOriginalFilename());
         productService.saveImage(multipartFile);

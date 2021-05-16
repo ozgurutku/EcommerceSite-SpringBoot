@@ -69,11 +69,11 @@ public class CartServiceImpl implements CartService {
         List<Cart> cart = getMyCart(user);
         Product product = productRepository.findProductById(id);
         Cart carts = cart.stream().filter(cart1 -> cart1.getProducts().getId() == product.getId()).findAny().orElse(null);
-        if(carts.getPiece() == 0) {
-            System.out.printf("yapcak bişi yok");
-        }else {
+        if(carts.getPiece() == 1) {
+            cartRepository.delete(carts);
+        } else {
             cartRepository.decrasePiece(product.getId(),user.getId());
-            productRepository.incrementPiece(product.getId());
         }
+        productRepository.incrementPiece(product.getId());
     }
 }
