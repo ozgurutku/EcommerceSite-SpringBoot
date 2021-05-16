@@ -25,5 +25,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Transactional
     @Modifying
     @Query("UPDATE Product p set p.piece = p.piece-1 WHERE p.id=:id")
-    void updatePiece(@Param("id") long id);
+    void decreasePiece(@Param("id") long id);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Product p set p.piece = p.piece+1 WHERE p.id=:id")
+    void incrementPiece(@Param("id") long id);
 }

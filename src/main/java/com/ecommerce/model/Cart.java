@@ -12,19 +12,13 @@ public class Cart {
     @Column
     private Long id;
 
-    @OneToMany
-    private List<UserProduct> userProducts = new ArrayList<>();
+    @OneToOne
+    private Product products = new Product();
 
     @OneToOne
     private User user;
 
-    public List<UserProduct> getUserProducts() {
-        return userProducts;
-    }
-
-    public void setProduct(List<UserProduct> userProducts) {
-        this.userProducts = userProducts;
-    }
+    private int piece;
 
     public User getUser() {
         return user;
@@ -32,5 +26,29 @@ public class Cart {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Product getProducts() {
+        return products;
+    }
+
+    public void setProducts(Product products) {
+        this.products = products;
+    }
+
+    public int getPiece() {
+        return piece;
+    }
+
+    public void setPiece(int piece) {
+        this.piece = piece;
     }
 }

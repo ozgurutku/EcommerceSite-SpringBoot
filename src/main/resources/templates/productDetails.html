@@ -4,18 +4,22 @@
 <body>
 <div th:replace="fragments/header :: header"></div>
 <div th:replace="fragments/sidebar :: sidebar"></div>
-<div class="card-group" style="margin-left: 250px;margin-right: 250px;">
-    <div class="col-md-4">
+<div class="card-group" style="margin-left: 200px;margin-right: 200px;margin-top:45px;">
+    <div class="col-md-4" style="margin-bottom: 75px">
         <div class="card">
-            <img class="card-img-top" th:src="'/images/'+${productDetail.image.fileName}" alt="Card image cap">
+            <img class="card-img-top" th:src="'/images/'+${productDetail.image.fileName}" style="object-fit: fill; width: auto;height: 250px;" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title" th:text="${productDetail.name}"></h5>
                 <p class="card-text" th:text="${productDetail.description}"></p>
-                <p class="card-text" th:text="'Kategori: '+${productDetail.category}"></p>
             </div>
-            <a th:href="@{/cart/add(id=${productDetail.id})}" class="btn btn-primary" style="margin:25px;">Sepete ekle</a>
-            <a href="#" class="btn btn-primary" style="margin:25px;" th:text="${productDetail.price}"></a>
-
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:text="'Fiyat : '+${productDetail.price}"></li>
+                <li class="list-group-item" th:text="'Kategori : '+${productDetail.category}"></li>
+                <li class="list-group-item" th:text="'Adet : '+${productDetail.piece}"></li>
+            </ul>
+            <div class="card-body">
+                <a th:href="@{/cart/add(id=${productDetail.id})}" class="btn btn-primary" style="margin:25px;">Sepete ekle</a>
+            </div>
         </div>
     </div>
 </div>

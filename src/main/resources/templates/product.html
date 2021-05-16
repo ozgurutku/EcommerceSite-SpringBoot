@@ -3,18 +3,24 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <body>
 <div th:fragment="product">
-<div class="card-group" style="margin-left: 200px;margin-right: 200px;margin-top:45px;">
-    <div class="col-md-4" th:each="product : ${listProduct}">
-    <div class="card">
-        <img class="card-img-top" th:src="'/images/'+${product.image.fileName}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title" th:text="${product.name}"></h5>
-        </div>
-        <a th:href="@{'/ecommerce/productDetails/'+${product.id}}" class="btn btn-primary" style="margin:25px;">Detaylı incele</a>
-        <a href="#" class="btn btn-primary" style="margin:25px;" th:text="${product.price}"></a>
+    <div class="card-group" style="margin-left: 200px;margin-right: 200px;margin-top:45px;">
+        <div class="col-md-4" th:each="product : ${listProduct}" style="margin-bottom: 75px">
+            <div class="card">
+                <img class="card-img-top" th:src="'/images/'+${product.image.fileName}" style="object-fit: fill; width: auto;height: 250px;" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:text="'Fiyat : '+${product.price}"></li>
+                    <li class="list-group-item" th:text="'Kategori : '+${product.category}"></li>
+                    <li class="list-group-item" th:text="'Adet : '+${product.piece}"></li>
+                </ul>
+                <div class="card-body">
+                    <a th:href="@{'/ecommerce/productDetails/'+${product.id}}" class="btn btn-primary">Detaylı incele</a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </div>
 </body>
 </head>
