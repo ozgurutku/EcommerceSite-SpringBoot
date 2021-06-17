@@ -28,6 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/ecommerce/**").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/login.png").permitAll()
+                .antMatchers("/register.png").permitAll()
                 .antMatchers("/logout").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/images/{name}").permitAll()
@@ -41,18 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/product/update/{id}").hasAnyAuthority("ADMIN")
                 .antMatchers("/product/add").hasAuthority("ADMIN")
                 .antMatchers("/adminPanel").hasAnyAuthority("ADMIN")
-                //Own Account Updates
-                .antMatchers("/account/update").hasAnyAuthority("ADMIN", "MODERATOR", "USER")
-                //Book
-                .antMatchers("/book/").hasAnyAuthority("ADMIN", "MODERATOR", "USER")
-                .antMatchers("/book/new").hasAnyAuthority("ADMIN", "MODERATOR")
-                .antMatchers("/book/update/{id}").hasAnyAuthority("ADMIN", "MODERATOR")
-                .antMatchers("/book/delete/{id}").hasAuthority("ADMIN")
-                //Publisher
-                .antMatchers("/publisher/").hasAnyAuthority("ADMIN", "MODERATOR", "USER")
-                .antMatchers("/publisher/new").hasAnyAuthority("ADMIN", "MODERATOR")
-                .antMatchers("/publisher/update/{id}").hasAnyAuthority("ADMIN", "MODERATOR")
-                .antMatchers("/publisher/delete/{id}").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
