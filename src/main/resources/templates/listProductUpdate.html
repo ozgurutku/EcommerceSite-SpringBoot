@@ -18,10 +18,9 @@
       <img class="card-img-top" th:src="'/images/'+${product.image.fileName}" style="object-fit: fill; width: auto;height: 250px;" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title" th:text="${product.name}"></h5>
-        <p class="card-text" th:text="${product.description}"></p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item" th:text="'Fiyat : '+${product.price}"></li>
+        <li class="list-group-item" th:text="'Fiyat : '+${product.price}+' TL'"></li>
         <li class="list-group-item" th:text="'Kategori : '+${product.category}"></li>
         <li class="list-group-item" th:text="'Adet : '+${product.piece}"></li>
       </ul>
